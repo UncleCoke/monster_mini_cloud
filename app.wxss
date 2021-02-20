@@ -1,0 +1,18 @@
+@import 'colorUI/icon.wxss';
+@import 'colorUI/main.wxss';
+@import 'colorUI/animation.wxss';
+
+page {
+    background-color: #fff;
+    font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.custom-img{
+    width:40rpx !important;
+    margin-right:8rpx;
+}
+
+view,
+text {
+    box-sizing: border-box;
+}

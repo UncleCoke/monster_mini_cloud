@@ -1,0 +1,64 @@
+<cu-custom catchtap="setModal">
+    <view slot="content">
+        <view class="flex align-center margin-left">
+            <image src="cloud://poker-yggrd.706f-poker-yggrd-1302369916/Monster.png" mode="widthFix" class="custom-img" />
+            <view>
+                todos
+                <text class="text-sm">(点我新增哦)</text>
+            </view>
+        </view>
+    </view>
+</cu-custom>
+<view class="padding-top" wx:if="{{list.length == 0}}">
+    <view class="text-center text-sm text-grey">- 啥都没有 -</view>
+</view>
+<view class="padding-top" wx:else>
+    <view class="cu-timeline" wx:for="{{list}}" wx:key="_id">
+        <view class="flex align-center justify-between padding-right">
+            <view class="cu-time" style="min-width:300rpx;">{{item.date}}</view>
+            <view class="flex align-center">
+                <button class="cu-btn sm bg-cyan" wx:if="{{!item.done}}" bindtap="finish" data-id="{{item._id}}">
+                    <text class="cuIcon-check"></text>
+                    完成
+                </button>
+                <button class="cu-btn sm bg-red margin-left-xs" bindtap="del" data-id="{{item._id}}">
+                    <text class="cuIcon-delete"></text>
+                    删除
+                </button>
+            </view>
+        </view>
+        <view class="cu-item cur {{item.done?'cuIcon-timefill text-cyan':'cuIcon-time'}}">
+            <view class="content {{item.done?'bg-cyan':''}} shadow-blur">{{item.content}}</view>
+        </view>
+    </view>
+</view>
+<view class="cu-modal {{showModal?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">新增任务</view>
+            <view class="action" bindtap="setModal">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="padding-sm">
+            <view class="cu-form-group">
+                <textarea maxlength="-1" bindinput="textareaInput" placeholder="输入任务内容" class="text-left" value="{{content}}"></textarea>
+            </view>
+            <view class="cu-form-group">
+                <view class="title">日期选择</view>
+                <picker mode="date" value="{{date}}" start="{{startDate}}" bindchange="dateChange">
+                    <view class="picker">{{date?date:'请选择日期'}}</view>
+                </picker>
+            </view>
+            <view class="cu-form-group">
+                <view class="title">时间选择</view>
+                <picker mode="time" value="{{time}}" bindchange="timeChange">
+                    <view class="picker">{{time?time:'请选择时间'}}</view>
+                </picker>
+            </view>
+            <view class="cu-form-group">
+                <button class="cu-btn bg-blue" style="width:100%;" bindtap="add">添加</button>
+            </view>
+        </view>
+    </view>
+</view>
